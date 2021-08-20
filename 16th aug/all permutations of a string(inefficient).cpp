@@ -32,6 +32,7 @@ memset(arr,0,sizeof(arr));
 string data="";
 vector<string>ans;
 permute(data,arr,ans,str);
+cout<<"Size"<<ans.size()<<endl;
 for(ll i=0;i<ans.size();i++)
 {
     cout<<ans[i]<<endl;
