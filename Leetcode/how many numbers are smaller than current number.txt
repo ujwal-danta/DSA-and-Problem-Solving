@@ -1,0 +1,47 @@
+// Time complexity - O(N log N)
+// Space Complexity - O(N)
+class Solution {
+public:
+    vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
+        vector<int>sorted = nums;
+        int n=nums.size();
+        sort(sorted.begin(),sorted.end());
+        for(int i=0;i<n;i++)
+        {
+            int num = nums[i];
+            int pos=-1;
+            auto it = lower_bound(sorted.begin(),sorted.end(),num);
+            pos= abs(sorted.begin() - it);
+            nums[i] = pos;
+        }
+        return nums;
+    }
+};
+
+
+// time complexity - O(n)
+// space complexity - O(101)
+// Best solution
+class Solution {
+public:
+    vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
+        vector<int>freq(101,0);
+        int n=nums.size();
+        for(int i=0;i<n;i++)
+        {
+            freq[nums[i]]++;
+        }
+        int sum=0;
+        for(int i=0;i<101;i++)
+        {
+            int val=freq[i];
+            freq[i]=sum;
+            sum+=val;
+        }
+        for(int i=0;i<n;i++)
+        {
+            nums[i]=freq[nums[i]];
+        }
+        return nums;
+    }
+};
